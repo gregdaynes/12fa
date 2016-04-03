@@ -14,7 +14,7 @@ RUN apk add --update \
     #g++ \
     #python
 
-RUN npm install -g nodemon
+#RUN npm install -g nodemon
 RUN npm install -g pm2
 
 # If you had native dependencies you can now remove build tools
