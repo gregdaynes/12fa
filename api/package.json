@@ -1,0 +1,29 @@
+{
+  "name": "12fa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -L --harmony ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "pm2 start ./server.js --no-daemon --node-args=--harmony"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "debug": "^2.2.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "tiny-load": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.6.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
+    "mocha": "^2.4.5"
+  }
+}
