@@ -16,6 +16,7 @@ const io = require('socket.io').listen(server)
 const loader = require('tiny-load');
 const middleware = loader('filter', 'middleware.js');
 const routes = loader('filter', 'routes.js');
+const sockets = loader('filter', 'sockets.js');
 const errorHandler = middleware.error();
 
 // App Config =================
@@ -37,6 +38,7 @@ app.all('*', (req, res, next) => {
 });
 
 if (process.env.NODE_ENV === 'development') app.use('/dev', routes.dev());
+if (process.env.NODE_ENV === 'development') sockets.dev()(io);
 
 // Error Handling =============
 // catch 404 and forward to error handler
@@ -45,13 +47,6 @@ app.use((req, res, next) => {
     err.status = 404;
     next(err);
 }).use(errorHandler);
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
 
 logStream('done.');
 
