@@ -59,5 +59,7 @@ logStream('done.');
 // Internal Functions =========
 
 function gracefulExit() {
-    return server.close();
+    io.removeAllListeners();
+    server.close();
+    return
 }
