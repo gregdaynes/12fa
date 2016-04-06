@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -L --harmony ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "pm2 start ./server.js --no-daemon --node-args=--harmony"
+    "prod": "pm2 start ./app.js --no-daemon --node-args=--harmony"
   },
   "author": "",
   "license": "ISC",
