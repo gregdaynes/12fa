@@ -19,14 +19,14 @@ const routes = loader('filter', 'routes.js');
 const sockets = loader('filter', 'sockets.js');
 const errorHandler = middleware.error();
 
-// App Config =================
+// Config =====================
 app.set('port', process.env.PORT);
 app.use(logger('tiny'));
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-// Attach routes ==============
+// Routes =====================
 
 // allow CORS
 app.all('*', (req, res, next) => {
@@ -37,8 +37,10 @@ app.all('*', (req, res, next) => {
     else next();
 });
 
-if (process.env.NODE_ENV === 'development') app.use('/dev', routes.dev());
-if (process.env.NODE_ENV === 'development') sockets.dev()(io);
+if (process.env.NODE_ENV === 'development') {
+    app.use('/dev', routes.dev());
+    sockets.dev()(io);
+}
 
 // Error Handling =============
 // catch 404 and forward to error handler
@@ -48,5 +50,14 @@ app.use((req, res, next) => {
     next(err);
 }).use(errorHandler);
 
+// Graceful Shutdown
+process.on('SIGINT', gracefulExit)
+    .on('SIGTERM', gracefulExit);
+
 logStream('done.');
 
+// Internal Functions =========
+
+function gracefulExit() {
+    return server.close();
+}
