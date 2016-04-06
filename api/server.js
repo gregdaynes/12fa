@@ -23,9 +23,17 @@ if (process.env.PROTOCOL === 'HTTPS') {
     server = require('http').createServer(app);
 }
 
-server.listen(process.env.PORT);
+server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+const io = require('socket.io')(server);
+//io.on('connection', socket => {
+    //socket.emit('news', { hello: 'world' }); 
+    //socket.on('my other event', data => {
+        //console.log(data);
+    //});
+//});
 
 // Internal functions =========
 

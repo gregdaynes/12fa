@@ -21,6 +21,7 @@ const errorHandler = middleware.error();
 app.use(logger('tiny'));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'));
 
 // Attach routes ==============
 // allow CORS
