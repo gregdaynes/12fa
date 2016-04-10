@@ -4,18 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -L --harmony ./app.js",
+    "dev": "NODE_PATH=./components nodemon -L --harmony ./app.js | bunyan",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "pm2 start ./app.js --no-daemon --node-args=--harmony"
+    "prod": "NODE_PATH=./components pm2 start ./app.js --no-daemon --node-args=--harmony"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "bunyan": "1.8.0",
     "cors": "^2.7.1",
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
+    "i18n": "0.8.1",
     "morgan": "^1.7.0",
     "socket.io": "^1.4.5",
     "tiny-load": "^2.3.1"
