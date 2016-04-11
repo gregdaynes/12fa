@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_PATH=./components nodemon -L --harmony ./app.js | bunyan",
+    "dev": "NODE_PATH=./components nodemon -i ./locales -L --harmony ./app.js | bunyan",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "NODE_PATH=./components pm2 start ./app.js --no-daemon --node-args=--harmony"
   },
