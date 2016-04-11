@@ -2,10 +2,9 @@
 
 require('dotenv').config();
 
-// Setup Logging ==============
-const log = require('logger');
-
 // Module dependencies ========
+const log = require('logger');
+const locale = require('locale');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -39,7 +38,7 @@ app.all('*', (req, res, next) => {
 if (process.env.NODE_ENV === 'development') {
     app.use('/dev', routes.dev());
     sockets.dev()(io);
-    log.info(`Application ready, listening on port ${process.env.PORT}`);
+    log.info(locale.__('Application ready, listening on port %s', process.env.PORT));
 }
 
 // Error Handling =============
@@ -58,7 +57,7 @@ process.on('SIGTERM', gracefulExit);
 // Internal Functions =========
 
 function gracefulExit() {
-    log.info(`Application shutting down. Waiting for processes to finish`);
+    log.info(locale.__('Application shutting down. Waiting for processes to finish'));
     io.removeAllListeners();
     server.close();
     return
