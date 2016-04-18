@@ -10,7 +10,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 const server = require('http').createServer(app).listen(process.env.PORT);
-const io = require('socket.io').listen(server)
+const io = require('socket.io').listen(server);
 const loader = require('tiny-load');
 const middleware = loader('filter', 'middleware.js');
 const routes = loader('filter', 'routes.js');
@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 // Graceful Shutdown
-process.on('SIGINT', gracefulExit)
+process.on('SIGINT', gracefulExit);
 process.on('SIGTERM', gracefulExit);
 
 // Internal Functions =========
@@ -60,5 +60,5 @@ function gracefulExit() {
     log.info(locale.__('Application shutting down. Waiting for processes to finish'));
     io.removeAllListeners();
     server.close();
-    return
+    return;
 }
