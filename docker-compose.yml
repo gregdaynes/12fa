@@ -18,6 +18,7 @@ services:
     networks:
       - back-tier
     #depends_on:
+      #- test
       #- db
 
   #db:
