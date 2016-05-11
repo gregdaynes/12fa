@@ -18,8 +18,7 @@ module.exports = (err, req, res, next) => {
 
 function actions(err) {
     log.info(err);
-    //ErrorHelper.sendError(err);
-    //NotificationHelper.sendAdminNotification(err);
+    // do other actions here
 }
 
 function formatMessage(err) {
